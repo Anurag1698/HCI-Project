@@ -92,6 +92,3 @@ Access the application at `http://127.0.0.1:8000/`.
 
 ---
 
-## 👥 Contributors
-
-- **Anurag** – [Anurag1698](https://github.com/Anurag1698)
