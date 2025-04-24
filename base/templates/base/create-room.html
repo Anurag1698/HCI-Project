@@ -1,0 +1,249 @@
+{% extends 'main.html' %} {% block content %} {% load static %}
+
+<div class="page-header" style="background: url(assets/img/banner1.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="breadcrumb-wrapper">
+          <h2 class="product-title">Post you Room</h2>
+          <ol class="breadcrumb">
+            <li><a href="#">Home /</a></li>
+            <li class="current">Post you Room</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="content" class="section-padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-4 col-lg-3 page-sidebar">
+        <aside>
+          <div class="sidebar-box">
+            <div class="user">
+              <figure>
+                <a href="#"
+                  ><img src="{% static 'assets/img/author/img1.jpg' %}" alt=""
+                /></a>
+              </figure>
+              <div class="usercontent">
+                <h3>{{user.username}}</h3>
+                <h4>Administrator</h4>
+              </div>
+            </div>
+            <nav class="navdashboard">
+              <ul>
+                <li>
+                  <a href="{% url 'update-user' %}">
+                    <i class="lni-cog"></i>
+                    <span>Profile Settings</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="{% url 'user-profile' user.id %}">
+                    <i class="lni-layers"></i>
+                    <span>My Rooms</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="/logout/">
+                    <i class="lni-enter"></i>
+                    <span>Logout</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+          <div class="widget">
+            <h4 class="widget-title">Advertisement</h4>
+            <div class="add-box">
+              <img
+                class="img-fluid"
+                src="{% static 'assets/img/img1.jpg' %}"
+                alt=""
+              />
+            </div>
+          </div>
+        </aside>
+      </div>
+      <div class="col-sm-12 col-md-8 col-lg-9">
+        <div class="row page-content">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-7">
+            <div class="inner-box">
+              <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="dashboard-box">
+                  <h2 class="dashbord-title">Room Detail</h2>
+                </div>
+                <div class="dashboard-wrapper">
+                  <div class="form-group mb-3">
+                    <label class="control-label">Room Title</label>
+                    <input
+                      class="form-control input-md"
+                      name="name"
+                      placeholder="Title"
+                      type="text"
+                    />
+                  </div>
+                  <div class="form-group mb-3 tg-inputwithicon">
+                    <label class="control-label">Categories</label>
+                    <input
+                      class="form-control input-md"
+                      list="tg-select"
+                      name="topic"
+                      value="{{room.topic.name}}"
+                      placeholder="Select Topics"
+                      type="text"
+                    />
+                    <datalist id="tg-select">
+                      <select>
+                        {% for topic in topics %}
+                        <option value="{{topic.name}}">{{topic.name}}</option>
+                        {% endfor %}
+                      </select>
+                    </datalist>
+                  </div>
+                  <div class="form-group mb-3">
+                    <label class="control-label">description</label>
+                    <textarea
+                      class="form-control input-md"
+                      name="description"
+                      type="text"
+                    ></textarea>
+                  </div>
+                  <div class="form-group md-3">{{form.image}}</div>
+
+                  <button class="btn btn-success" type="submit">
+                    Add Room
+                  </button>
+                  <a
+                    href="{{request.META.HTTP_REFERER}}"
+                    class="btn btn-danger"
+                    type="button"
+                    >Cancel</a
+                  >
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-5">
+            <div class="inner-box">
+              <div class="tg-contactdetail">
+                <div class="dashboard-box">
+                  <h2 class="dashbord-title">Contact Detail</h2>
+                </div>
+                <div class="dashboard-wrapper">
+                  <div class="form-group mb-3">
+                    <strong>I’m a:</strong>
+                    <div class="tg-selectgroup">
+                      <!-- <span class="tg-radio">
+                                                <input id="tg-sameuser" type="radio" name="usertype" value="same user"
+                                                    checked="">
+                                                <label for="tg-sameuser">Same User</label>
+                                            </span>
+                                            <span class="tg-radio">
+                                                <input id="tg-someoneelse" type="radio" name="usertype"
+                                                    value="someone else">
+                                                <label for="tg-someoneelse">Someone Else</label>
+                                            </span> -->
+                    </div>
+                  </div>
+                  <div class="form-group mb-3">
+                    <label class="control-label">First Name*</label>
+                    <input
+                      class="form-control input-md"
+                      name="name"
+                      type="text"
+                      placeholder="{{request.user.first_name}}"
+                    />
+                  </div>
+                  <div class="form-group mb-3">
+                    <label class="control-label">Last Name*</label>
+                    <input
+                      class="form-control input-md"
+                      name="name"
+                      type="text"
+                      placeholder="{{request.user.last_name}}"
+                    />
+                  </div>
+                  <!-- <div class="form-group mb-3">
+                                        <label class="control-label">Phone*</label>
+                                        <input class="form-control input-md" name="phone" type="text">
+                                    </div> -->
+                  <div class="form-group mb-3">
+                    <label class="control-label">Enter Address</label>
+                    <input
+                      class="form-control input-md"
+                      name="address"
+                      type="text"
+                      placeholder="{{request.user.email}}"
+                    />
+                  </div>
+                  <!-- <div class="form-group mb-3">
+                                        <label class="control-label">Enter Address</label>
+                                        <input class="form-control input-md" name="address" type="text">
+                                    </div>
+                                    <div class="form-group mb-3 tg-inputwithicon">
+                                        <label class="control-label">Country</label>
+                                        <div class="tg-select form-control">
+                                            <select>
+                                                <option value="none">Select Country</option>
+                                                <option value="none">Country 1</option>
+                                                <option value="none">Country 2</option>
+                                                <option value="none">Country 3</option>
+                                                <option value="none">Country 4</option>
+                                                <option value="none">Country 5</option>
+                                                <option value="none">Country 6</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-3 tg-inputwithicon">
+                                        <label class="control-label">State</label>
+                                        <div class="tg-select form-control">
+                                            <select>
+                                                <option value="none">Select State</option>
+                                                <option value="none">Select State</option>
+                                                <option value="none">Select State</option>
+                                            </select>
+                                        </div>
+                                    </div> -->
+                  <!-- <div class="form-group mb-3 tg-inputwithicon">
+                                        <label class="control-label">City</label>
+                                        <div class="tg-select form-control">
+                                            <select>
+                                                <option value="none">Select City</option>
+                                                <option value="none">Select City</option>
+                                                <option value="none">Select City</option>
+                                            </select>
+                                        </div>
+                                    </div> -->
+                  <div class="tg-checkbox">
+                    <div class="custom-control custom-checkbox">
+                      <input
+                        type="checkbox"
+                        class="custom-control-input"
+                        id="tg-agreetermsandrules"
+                      />
+                      <label
+                        class="custom-control-label"
+                        for="tg-agreetermsandrules"
+                        >I agree to all
+                        <a href="javascript:void(0);"
+                          >Terms of Use &amp; Posting Rules</a
+                        ></label
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

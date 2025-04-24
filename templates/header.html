@@ -1,0 +1,211 @@
+{% load static %}
+
+<style>
+  .phone,
+  .email {
+    color: aliceblue !important;
+  }
+
+  .phone:hover,
+  .email:hover {
+    color: #ffc600 !important;
+  }
+
+  .btn-common {
+    background-color: #07294d !important;
+    color: #ffc600 !important;
+  }
+
+  .btn-common:hover {
+    background-color: #ffc600 !important;
+    color: #07294d !important;
+  }
+
+  .top-bar {
+    background-color: #07294d !important;
+    font-weight: bold;
+  }
+
+  .navbar-expand-lg .navbar-nav .nav-link {
+    color: #07294d !important;
+    font-weight: bold !important;
+  }
+
+  .navbar-expand-lg .navbar-nav li a:hover,
+  .navbar-expand-lg .navbar-nav li .active > a,
+  .navbar-expand-lg .navbar-nav li a:focus {
+    color: #ffc600 !important;
+    font-weight: bold !important;
+    outline: none;
+  }
+
+  .navbar {
+    padding: 0;
+  }
+
+  .navbar li.active a.nav-link {
+    color: #ffc600 !important;
+    font-weight: bold !important;
+  }
+</style>
+
+<header id="header-wrap">
+  <div class="top-bar">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-xs-12">
+          {% for message in messages %}
+          <div class="container-fluid">
+            <div
+              class="alert {{ message.tags }} alert-dismissible"
+              role="alert"
+            >
+              <button
+                type="button"
+                class="close"
+                data-dismiss="alert"
+                aria-label="Close"
+              >
+                <span aria-hidden="True">&times;</span>
+              </button>
+              {{ message }}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+
+        <div class="col-lg-7 col-md-5 col-xs-12">
+          <div class="mt-2">
+            <i class="lni-phone"></i>
+            <a class="phone pr-3" href="#">+0123 456 789</a>
+
+            <i class="lni-envelope"></i>
+            <a href="#" class="email">info@gmail.com</a>
+          </div>
+        </div>
+
+        <div class="col-lg-5 col-md-7 col-xs-12">
+          {% if request.user.is_authenticated %}
+          <div class="header-top-right float-right">
+            <a href="{% url 'update-user' %}" class="header-top-button">
+              <i class="lni-lock"></i>{{ request.user.username }}
+            </a>
+            |
+            <a href="{% url 'logout' %}" class="header-top-button">
+              <i class="lni-pencil"></i> Logout
+            </a>
+          </div>
+          {% else %}
+          <div class="header-top-right float-right">
+            <a href="{% url 'login' %}" class="header-top-button">
+              <i class="lni-lock"></i> Log In
+            </a>
+            |
+            <a href="{% url 'register' %}" class="header-top-button">
+              <i class="lni-pencil"></i> Register
+            </a>
+          </div>
+          {% endif %}
+
+          <div class="roof-social float-right">
+            <a class="facebook" href="#"><i class="lni-facebook-filled"></i></a>
+            <a class="twitter" href="#"><i class="lni-twitter-filled"></i></a>
+            <a class="instagram" href="#"
+              ><i class="lni-instagram-filled"></i
+            ></a>
+            <a class="linkedin" href="#"><i class="lni-linkedin-fill"></i></a>
+            <a class="google" href="#"><i class="lni-google-plus"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="navbar navbar-expand-lg bg-white fixed-top scrolling-navbar">
+    <div class="container">
+      <div class="navbar-header">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#main-navbar"
+          aria-controls="main-navbar"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+          <span class="lni-menu"></span>
+          <span class="lni-menu"></span>
+          <span class="lni-menu"></span>
+        </button>
+        <a href="{% url 'home' %}" class="navbar-brand">
+          <img
+            src="{% static 'assets/img/logo/library.svg' %}"
+            width="50"
+            height="50"
+            alt="StudyRoom"
+          />
+        </a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="main-navbar">
+        <ul class="navbar-nav mr-auto w-100 justify-content-center">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'home' %}"> Home </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'about' %}"> About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'service' %}"> Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'rooms' %}"> Study-Rooms </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'faq' %}"> FAQ </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'blogs' %}"> Blogs </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'contact' %}"> Contact </a>
+          </li>
+        </ul>
+
+        <div class="post-btn">
+          <a class="btn btn-common" href="{% url 'create-room' %}">
+            <i class="lni-pencil-alt"></i> Create-Room
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <ul class="mobile-menu">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'home' %}"> Home </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'about' %}"> About</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'service' %}"> Services</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'rooms' %}"> Study-Rooms </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'faq' %}"> FAQ </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'blogs' %}"> Blogs </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'contact' %}"> Contact </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'create-room' %}"> Create-Room</a>
+      </li>
+    </ul>
+  </nav>
+</header>

@@ -1,0 +1,977 @@
+{% extends 'main.html' %} {% block content %} {% load static %}
+
+<style>
+  .corses-tab {
+    border: 1px solid #edf0f2;
+    border-radius: 5px;
+  }
+
+  .corses-tab .nav .nav-item a {
+    font-size: 16px;
+    color: #24486e;
+    font-weight: 600;
+    font-family: "Montserrat", sans-serif;
+    padding: 20px 0;
+    display: block;
+    background-color: #edf0f2;
+  }
+
+  .corses-tab .nav .nav-item a.active {
+    background-color: #fff;
+  }
+
+  .tab-content .singel-course .course-teacher .name {
+    bottom: 0;
+  }
+
+  .teachers-right .tab-content {
+    padding: 0px 50px 35px;
+    background-color: #fff;
+  }
+
+  .teachers-right .tab-content .dashboard-cont .singel-dashboard h5 {
+    font-size: 18px;
+    color: #000;
+    font-weight: 600;
+    padding-bottom: 15px;
+  }
+
+  .teachers-right .tab-content .reviews-cont {
+    padding: 45px 0 15px;
+  }
+
+  .shop-reviews .tab-content {
+    background-color: #fafafa;
+    padding: 0px 45px 40px;
+    border-radius: 5px;
+    border-top-left-radius: 0;
+  }
+
+  .shop-reviews .tab-content .reviews-cont {
+    padding: 0;
+  }
+
+  .overview-description .singel-description h6 {
+    font-size: 18px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    color: #000;
+    padding-bottom: 10px;
+  }
+
+  .corses-tab .nav .nav-item a.active {
+    background-color: #fff;
+  }
+
+  .overview-description {
+    padding: 0px 30px 25px;
+  }
+
+  .overview-description .singel-description h6 {
+    font-size: 18px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    color: #000;
+    padding-bottom: 10px;
+  }
+
+  .curriculam-cont {
+    padding: 25px 30px;
+  }
+
+  .curriculam-cont .title h6 {
+    font-size: 18px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    color: #000;
+    padding-bottom: 30px;
+  }
+
+  .curriculam-cont .accordion {
+    border: 0;
+  }
+
+  .curriculam-cont .accordion .card {
+    border: 0;
+    border-radius: 0;
+    border-bottom: 1px solid #cecece !important;
+  }
+
+  .curriculam-cont .accordion .card:last-child {
+    border-bottom: 0 !important;
+  }
+
+  .curriculam-cont .accordion .card .card-header {
+    padding: 0;
+    border-bottom: 0;
+  }
+
+  .curriculam-cont .accordion .card .card-header a {
+    overflow: hidden;
+    display: block;
+    padding: 15px 15px;
+    background-color: #edf0f2;
+  }
+
+  .curriculam-cont .accordion .card .card-header a.collapsed {
+    background-color: #fff;
+    border: none;
+  }
+
+  .curriculam-cont .accordion .card .card-header a::before,
+  .curriculam-cont .accordion .card .card-header a.collapsed::before {
+    content: "\f107";
+    font-family: FontAwesome;
+    font-size: 18px;
+    color: #8a8a8a;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+    -webkit-transition: all 0.2s linear;
+    transition: all 0.2s linear;
+  }
+
+  .curriculam-cont .accordion .card .card-header a.collapsed:before {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  .curriculam-cont .accordion .card .card-header a ul li {
+    display: inline-block;
+  }
+
+  .curriculam-cont .accordion .card .card-header a ul li:last-child {
+    float: right;
+  }
+
+  .curriculam-cont .accordion .card .card-header a ul li > i {
+    color: #ffc600;
+    font-size: 15px;
+    margin-right: 5px;
+  }
+
+  .curriculam-cont .accordion .card .card-header a ul li > .lecture {
+    font-size: 15px;
+    color: #8a8a8a;
+  }
+
+  .curriculam-cont .accordion .card .card-header a ul li > .head {
+    font-size: 16px;
+    font-weight: 600;
+    font-family: "Montserrat", sans-serif;
+    margin-left: 15px;
+    color: #000;
+  }
+
+  .curriculam-cont .accordion .card .card-header a ul li > .time {
+    font-size: 15px;
+    color: #8a8a8a;
+    text-align: right;
+    padding-right: 30px;
+  }
+
+  .curriculam-cont .accordion .card .card-header a ul li > .time i {
+    margin-right: 5px;
+  }
+
+  .curriculam-cont .accordion .card .card-body {
+    background-color: #edf0f2;
+    padding: 0 25px 20px;
+  }
+
+  .instructor-cont {
+    padding: 30px 30px 25px;
+  }
+
+  .instructor-cont .instructor-author {
+    overflow: hidden;
+  }
+
+  .instructor-cont .instructor-author .author-thum {
+    float: left;
+    margin-right: 30px;
+  }
+
+  .instructor-cont .instructor-author .author-name {
+    float: left;
+  }
+
+  .instructor-cont .instructor-author .author-name a {
+    display: block;
+  }
+
+  .instructor-cont .instructor-author .author-name a h5 {
+    font-size: 18px;
+    color: 30px;
+    font-weight: 600;
+  }
+
+  .instructor-cont .instructor-author .author-name span {
+    font-size: 15px;
+    color: #8a8a8a;
+  }
+
+  .instructor-cont .instructor-author .author-name .social {
+    padding-top: 25px;
+  }
+
+  .instructor-cont .instructor-author .author-name .social li {
+    display: inline-block;
+    margin-right: 8px;
+  }
+
+  .instructor-cont .instructor-author .author-name .social li a {
+    font-size: 16px;
+    width: 35px;
+    height: 35px;
+    line-height: 33px;
+    border: 1px solid #24486e;
+    background-color: #24486e;
+    color: #fff;
+    text-align: center;
+    -webkit-transition: all 0.4s linear;
+    transition: all 0.4s linear;
+  }
+
+  .instructor-cont .instructor-author .author-name .social li a:hover {
+    background-color: #fff;
+    color: #24486e;
+  }
+
+  .reviews-cont {
+    padding: 25px 30px 30px;
+  }
+
+  .reviews-cont .title h6 {
+    font-size: 18px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    color: #000;
+  }
+
+  .reviews-cont ul li .singel-reviews {
+    padding-top: 30px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #d2d2d2;
+  }
+
+  .reviews-cont ul li:last-child .singel-reviews {
+    border-bottom: 0;
+  }
+
+  .reviews-cont ul li .singel-reviews .reviews-author {
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+
+  .reviews-cont ul li .singel-reviews .reviews-author .author-thum img {
+    border-radius: 5px;
+  }
+
+  .reviews-cont ul li .singel-reviews .reviews-author .author-name {
+    padding-left: 20px;
+  }
+
+  .reviews-cont ul li .singel-reviews .reviews-author .author-name h6 {
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .reviews-cont ul li .singel-reviews .reviews-author .author-name span {
+    font-size: 15px;
+    color: #8a8a8a;
+    font-weight: 400;
+    font-family: "Poppins", sans-serif;
+  }
+
+  .reviews-cont ul li .singel-reviews .reviews-description p {
+    padding-bottom: 17px;
+  }
+
+  .reviews-cont ul li .singel-reviews .reviews-description .rating {
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+
+  .reviews-cont ul li .singel-reviews .reviews-description .rating ul li {
+    display: inline-block;
+    font-size: 15px;
+    color: #ffc600;
+  }
+
+  .reviews-cont ul li .singel-reviews .reviews-description .rating span {
+    font-size: 15px;
+    color: #000;
+    margin-left: 10px;
+  }
+
+  .reviews-cont .reviews-form .form-singel {
+    padding-top: 25px;
+  }
+
+  .reviews-cont .reviews-form .form-singel input,
+  .reviews-cont .reviews-form .form-singel textarea {
+    width: 100%;
+    height: 45px;
+    border: 1px solid #cecece;
+    border-radius: 5px;
+    padding: 0 20px;
+  }
+
+  .reviews-cont .reviews-form .form-singel textarea {
+    height: 160px;
+    padding-top: 20px;
+    resize: none;
+  }
+
+  .reviews-cont .reviews-form .form-singel .rate-wrapper {
+    overflow: hidden;
+  }
+
+  .reviews-cont .reviews-form .form-singel .rate-label {
+    float: left;
+    color: #000;
+    margin-right: 10px;
+    margin-left: 0;
+  }
+
+  .reviews-cont .reviews-form .form-singel .rate {
+    float: left;
+    color: #cecece;
+    cursor: pointer;
+  }
+
+  .reviews-cont .reviews-form .form-singel .rate-item {
+    float: left;
+    cursor: pointer;
+    margin: 0px 3px 0px 3px;
+  }
+
+  .reviews-cont .reviews-form .form-singel .rate:hover,
+  .reviews-cont .reviews-form .form-singel .rate.selected {
+    color: #ffc600;
+  }
+
+  .reviews-cont .reviews-form .form-singel .rate .rate-item:hover ~ .rate-item,
+  .reviews-cont
+    .reviews-form
+    .form-singel
+    .rate
+    .rate-item.active
+    ~ .rate-item {
+    color: #cecece;
+  }
+
+  .releted-courses .title h3 {
+    font-size: 30px;
+    color: #07294d;
+  }
+
+  .course-features {
+    background-color: #fff;
+    padding: 30px 35px;
+    border-radius: 5px;
+  }
+
+  .course-features h4,
+  .You-makelike h4 {
+    font-size: 24px;
+    color: #07294d;
+    padding-bottom: 15px;
+  }
+
+  .course-features ul li {
+    font-size: 15px;
+    color: #8a8a8a;
+    overflow: hidden;
+    line-height: 45px;
+    border-bottom: 1px solid #d2d2d2;
+  }
+
+  .course-features ul li:last-child {
+    border-bottom: 0;
+  }
+
+  .course-features ul li i {
+    color: #ffc600;
+    margin-right: 8px;
+  }
+
+  .course-features ul li span {
+    float: right;
+  }
+
+  .course-features .price-button {
+    overflow: hidden;
+  }
+
+  .course-features .price-button span {
+    font-size: 18px;
+    color: #24486e;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    margin-top: 12px;
+  }
+
+  .course-features .price-button span b {
+    color: #ffc600;
+  }
+
+  .course-features .price-button .main-btn {
+    float: right;
+  }
+  .panel-heading {
+    background-color: #24486e !important;
+  }
+</style>
+
+
+<img src="media\image\study_room.jpeg" alt="Header Image" style="width: 100%; max-height: 300px; object-fit: cover;" />
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="breadcrumb-wrapper">
+          <h2 class="product-title">Details</h2>
+          <ol class="breadcrumb">
+            <li><a href="#">Home /</a></li>
+            <li class="current">Details</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section-padding">
+  <div class="container">
+    <div class="product-info row">
+      <div class="col-lg-8 col-md-12 col-xs-12">
+        <div class="details-box">
+          <div class="ads-details-info">
+            <h2>{{room.name}}</h2>
+            <div class="d-flex gap-2 mb-3">
+                {% if request.user == room.host %}
+                    <a
+                    href="{% url 'manage-room-requests' room.id %}"
+                    class="btn btn-warning"
+                    >
+                    Manage Join Requests
+                    </a>
+                {% endif %}
+
+                <!-- Toggle Button -->
+                <button class="btn btn-outline-primary" onclick="toggleParticipants()">
+                    Show Participants ({{ room.participants.count }})
+                </button>
+                </div>
+
+                <!-- Participant List (Initially Hidden) -->
+                <div id="participant-list" style="display: none;">
+                    <ul class="list-group mb-3">
+                        {% for participant in room.participants.all %}
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                            {{ participant.username }}
+
+                            {% if request.user == room.host and participant != room.host %}
+                                <form method="POST" action="{% url 'remove-participant' room.id participant.id %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-sm btn-danger">Remove</button>
+                                </form>
+                            {% endif %}
+                            </li>
+                        {% empty %}
+                            <li class="list-group-item">No participants yet.</li>
+                        {% endfor %}
+                    </ul>
+
+                </div>
+
+                <!-- Toggle Script -->
+                <script>
+                function toggleParticipants() {
+                    const list = document.getElementById("participant-list");
+                    list.style.display = list.style.display === "none" ? "block" : "none";
+                }
+                </script>
+
+
+            
+            <div class="details-meta">
+              <span
+                ><a href="#"
+                  ><i class="lni-alarm-clock"></i> {{room.created}}</a
+                ></span
+              >
+              <!-- <span><a href="#"><i class="lni-map-marker"></i> New York</a></span> -->
+              <span
+                ><a href="#"
+                  ><i class="lni-eye"></i> {{room.participants.count}}
+                  participants</a
+                ></span
+              >
+            </div>
+            <div class="ads-details-wrapper">
+              <div id="owl-demo" class="owl-carousel owl-theme">
+                <div class="item">
+                  <div class="product-img">
+                    <img
+                      src="{{room.image.url}}"
+                      width="100%"
+                      height="400px"
+                      alt=""
+                    />
+                  </div>
+                  <!-- <span class="price">$1,550</span> -->
+                </div>
+              </div>
+            </div>
+            <!-- <p class="mb-4">{{room.description |escape |linebreaks}}</p> -->
+          </div>
+          <div class="corses-tab mt-30">
+            <ul class="nav nav-justified" id="myTab" role="tablist">
+              <li class="nav-item">
+                <a
+                  class="active"
+                  id="overview-tab"
+                  data-toggle="tab"
+                  href="#overview"
+                  role="tab"
+                  aria-controls="overview"
+                  aria-selected="true"
+                  >Overview</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  id="curriculam-tab"
+                  data-toggle="tab"
+                  href="#curriculam"
+                  role="tab"
+                  aria-controls="curriculam"
+                  aria-selected="false"
+                  >Curriculam</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  id="instructor-tab"
+                  data-toggle="tab"
+                  href="#instructor"
+                  role="tab"
+                  aria-controls="instructor"
+                  aria-selected="false"
+                  >Instructor</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  id="reviews-tab"
+                  data-toggle="tab"
+                  href="#reviews"
+                  role="tab"
+                  aria-controls="reviews"
+                  aria-selected="false"
+                  >Reviews</a
+                >
+              </li>
+            </ul>
+
+            <div class="tab-content" id="myTabContent">
+              <div
+                class="tab-pane fade show active"
+                id="overview"
+                role="tabpanel"
+                aria-labelledby="overview-tab"
+              >
+                <div class="overview-description">
+                  <div class="singel-description pt-40">
+                    <h6 class="pt-3">Course Summery</h6>
+                    <p>{{room.description |escape |linebreaks}}</p>
+                  </div>
+                </div>
+                <!-- overview description -->
+              </div>
+              <div
+                class="tab-pane fade"
+                id="curriculam"
+                role="tabpanel"
+                aria-labelledby="curriculam-tab"
+              >
+                <div class="curriculam-cont">
+                  <div class="title">
+                    <h6>Learn {{room.name}}</h6>
+                  </div>
+
+                  <div class="accordion">
+                    {% for curri in curriculam %}
+                    <div class="card">
+                      <div class="card-header">
+                        <a href="{{curri.file.url}}" class="collapsed">
+                          <ul>
+                            <li>
+                              <span class="lecture"
+                                >Lecture ( {{ forloop.counter }} )</span
+                              >
+                            </li>
+                            <li><span class="head">{{curri.name}}</span></li>
+                            <li>
+                              <span>
+                                <button class="btn btn-primary">View</button>
+                              </span>
+                            </li>
+                          </ul>
+                        </a>
+                      </div>
+                    </div>
+                    {% endfor %}
+                  </div>
+                </div>
+                <!-- curriculam cont -->
+                {% if room.host == request.user %}
+                <div class="panel-group" id="accordion">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h4 class="panel-title">
+                        <a
+                          data-toggle="collapse"
+                          data-parent="#accordion"
+                          href="#collapseTwo"
+                        >
+                          Add More Study material
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse">
+                      <div class="">
+                        <div class="inner-box">
+                          <form method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="dashboard-box">
+                              <h2 class="dashbord-title">
+                                Study Material Detail
+                              </h2>
+                            </div>
+                            <div class="dashboard-wrapper">
+                              <div class="form-group mb-3">
+                                <label class="control-label"
+                                  >Study Material Name</label
+                                >
+                                <input
+                                  class="form-control input-md"
+                                  name="name"
+                                  placeholder="Material name"
+                                  type="text"
+                                />
+                              </div>
+
+                              <div class="form-group mb-3">
+                                <label class="control-label">File</label>
+                                <input
+                                  type="file"
+                                  name="file"
+                                  class="form-control input-md"
+                                />
+                              </div>
+
+                              <button class="btn btn-success" type="submit">
+                                Add Study material
+                              </button>
+                              <a
+                                href="{{request.META.HTTP_REFERER}}"
+                                class="btn btn-danger"
+                                type="button"
+                                >Cancel</a
+                              >
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {% endif %}
+              </div>
+
+              <div
+                class="tab-pane fade"
+                id="instructor"
+                role="tabpanel"
+                aria-labelledby="instructor-tab"
+              >
+                <div class="instructor-cont">
+                  <div class="instructor-author">
+                    <div class="author-thum">
+                      <a href="{% url 'user-profile' room.host.id %}"
+                        ><img
+                          src="{% static 'assets/img/productinfo/agent.jpg' %}"
+                          alt=""
+                      /></a>
+                    </div>
+                    <div class="author-name">
+                      <a href="{% url 'user-profile' room.host.id %}">
+                        <h5>{{room.host}}</h5>
+                      </a>
+                      <span>Senior Developer</span>
+                      <ul class="social">
+                        <li>
+                          <a href="#"><i class="lni-facebook-filled"></i></a>
+                        </li>
+                        <li>
+                          <a href="#"><i class="lni-twitter-filled"></i></a>
+                        </li>
+                        <li>
+                          <a href="#"><i class="lni-google-plus"></i></a>
+                        </li>
+                        <li>
+                          <a href="#"><i class="lni-linkedin-fill"></i></a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="instructor-description pt-25">
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                      Delectus fuga ratione molestiae unde provident quibusdam
+                      sunt, doloremque. Error omnis mollitia, ex dolor sequi.
+                      Et, quibusdam excepturi. Animi assumenda, consequuntur
+                      dolorum odio sit inventore aliquid, optio fugiat alias.
+                      Veritatis minima, dicta quam repudiandae repellat non sit,
+                      distinctio, impedit, expedita tempora numquam?
+                    </p>
+                  </div>
+                </div>
+                <!-- instructor cont -->
+              </div>
+              <div
+                class="tab-pane fade"
+                id="reviews"
+                role="tabpanel"
+                aria-labelledby="reviews-tab"
+              >
+                <div class="reviews-cont">
+                  <div class="title">
+                    <h6>Student Reviews</h6>
+                  </div>
+                  <ul>
+                    {% for message in room_messages %}
+                    <li>
+                      <div class="singel-reviews">
+                        <div class="reviews-author">
+                          <div class="author-thum">
+                            <a href="{% url 'user-profile' room.host.id %}"
+                              ><img
+                                src="{% static 'assets/img/productinfo/agent.jpg' %}"
+                                alt=""
+                            /></a>
+                          </div>
+                          <div class="author-name">
+                            <h6>{{message.host}}</h6>
+                            <span>{{message.created | timesince}}</span>
+                          </div>
+                        </div>
+                        <div class="reviews-description pt-20">
+                          <p>{{message.body}}</p>
+                        </div>
+                      </div>
+                      <!-- singel reviews -->
+                    </li>
+                    {% endfor %}
+                  </ul>
+                  <div class="title pt-15">
+                    <h6>Leave A Comment</h6>
+                  </div>
+                  <div class="reviews-form">
+                    <form method="POST">
+                      {% csrf_token%}
+                      <div class="row">
+                        <div class="col-lg-12">
+                          <div class="form-singel">
+                            <textarea
+                              name="body"
+                              placeholder="Comment"
+                            ></textarea>
+                          </div>
+                        </div>
+                        <div class="col-lg-12">
+                          <div class="form-singel">
+                            <button type="submit" class="btn btn-primary">
+                              Post Comment
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- row -->
+                    </form>
+                  </div>
+                </div>
+                <!-- reviews cont -->
+              </div>
+            </div>
+            <!-- tab content -->
+          </div>
+          <div class="tag-bottom">
+            <div class="float-left">
+              <ul class="advertisement">
+                <li>
+                  <p>
+                    <strong><i class="lni-folder"></i> Topic:</strong>
+                    <a href="#">{{room.topic}}</a>
+                  </p>
+                </li>
+              </ul>
+            </div>
+            <div class="float-right">
+              <div class="share">
+                <div class="social-link">
+                  <a
+                    class="facebook"
+                    data-toggle="tooltip"
+                    data-placement="top"
+                    title="facebook"
+                    href="#"
+                    ><i class="lni-facebook-filled"></i
+                  ></a>
+                  <a
+                    class="twitter"
+                    data-toggle="tooltip"
+                    data-placement="top"
+                    title="twitter"
+                    href="#"
+                    ><i class="lni-twitter-filled"></i
+                  ></a>
+                  <a
+                    class="linkedin"
+                    data-toggle="tooltip"
+                    data-placement="top"
+                    title="linkedin"
+                    href="#"
+                    ><i class="lni-linkedin-fill"></i
+                  ></a>
+                  <a
+                    class="google"
+                    data-toggle="tooltip"
+                    data-placement="top"
+                    title="google plus"
+                    href="#"
+                    ><i class="lni-google-plus"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-xs-12">
+        <aside class="details-sidebar">
+          <div class="widget">
+            <h4 class="widget-title">Room Posted By</h4>
+            <div class="agent-inner">
+              <div class="agent-title">
+                <div class="agent-photo">
+                  <a href="{% url 'user-profile' room.host.id %}"
+                    ><img
+                      src="{% static 'assets/img/productinfo/agent.jpg' %}"
+                      alt=""
+                  /></a>
+                </div>
+                <div class="agent-details">
+                  <h3>
+                    <a href="{% url 'user-profile' room.host.id %}"
+                      >{{room.host.username}}</a
+                    >
+                  </h3>
+                  <span
+                    ><i class="lni-email-address"></i>{{room.host.email}}</span
+                  >
+                </div>
+              </div>
+
+              <a class="btn btn-primary" href="{% url 'joinUs' room.id %}"
+                >Join us</a
+              >
+            </div>
+          </div>
+
+          <div class="widget">
+            <h4 class="widget-title">Latest Room</h4>
+            <ul class="posts-list">
+              {% for room in rooms.all|slice:5 %}
+              <li>
+                <div class="widget-thumb">
+                  <a href="{% url 'room' room.id %}"
+                    ><img src="{{room.image.url}}" alt=""
+                  /></a>
+                </div>
+                <div class="widget-content">
+                  <h4><a href="{% url 'room' room.id %}">{{room.name}}</a></h4>
+                  <div class="meta-tag">
+                    <span>
+                      <a href="#"><i class="lni-user"></i> {{room.host}}</a>
+                    </span>
+                    <!-- <span>
+                                            <a href="#"><i class="lni-map-marker"></i> {{room.topic}}</a>
+                                        </span> -->
+                    <span>
+                      <a href="#"><i class="lni-tag"></i>{{room.topic}}</a>
+                    </span>
+                  </div>
+                  <!-- <h4 class="price">$480.00</h4> -->
+                </div>
+                <div class="clearfix"></div>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="subscribes section-padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="subscribes-inner">
+          <div class="icon">
+            <i class="lni-pointer"></i>
+          </div>
+          <div class="sub-text">
+            <h3>Subscribe to Newsletter</h3>
+            <p>and receive new ads in inbox</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <form>
+          <div class="subscribe">
+            <input
+              class="form-control"
+              name="EMAIL"
+              placeholder="Enter your Email"
+              required=""
+              type="email"
+            />
+            <button class="btn btn-common" type="submit">Subscribe</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

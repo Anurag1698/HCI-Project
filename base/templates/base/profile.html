@@ -1,0 +1,185 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+{% load static %}
+
+<style>
+    .dashboardtable tbody tr:hover .btn-delete {
+        background: #f91942 !important;
+        color: #fff
+    }
+</style>
+
+<div class="page-header" style="background: url(assets/img/banner1.jpg)">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumb-wrapper">
+                    <h2 class="product-title">Dashbord</h2>
+                    <ol class="breadcrumb">
+                        <li><a href="#">Home /</a></li>
+                        <li class="current">Dashboard</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="content" class="section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-4 col-lg-3 page-sidebar">
+                <aside>
+                    <div class="sidebar-box">
+                        <div class="user">
+                            <figure>
+                                <a href="#"><img src="{% static 'assets/img/author/img1.jpg' %}" alt=""></a>
+                            </figure>
+                            <div class="usercontent">
+                                <h3>{{user.username}}</h3>
+                                <h4>Administrator</h4>
+                            </div>
+                        </div>
+                        <nav class="navdashboard">
+                            <ul>
+
+                                <li>
+                                    <a href="{% url 'update-user' %}">
+                                        <i class="lni-cog"></i>
+                                        <span>Profile Settings</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'user-profile' user.id %}">
+                                        <i class="lni-layers"></i>
+                                        <span>My Rooms</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="offermessages.html">
+                                        <i class="lni-envelope"></i>
+                                        <span>Offers/Messages</span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="{% url 'logout' %}">
+                                        <i class="lni-enter"></i>
+                                        <span>Logout</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="widget">
+                        <h4 class="widget-title">Advertisement</h4>
+                        <div class="add-box">
+                            <img class="img-fluid" src="{% static 'assets/img/img1.jpg' %}" alt="">
+                        </div>
+                    </div>
+                </aside>
+            </div>
+            <div class="col-sm-12 col-md-8 col-lg-9">
+                <div class="page-content">
+                    <div class="inner-box">
+                        <div class="dashboard-box">
+                            <h2 class="dashbord-title">Dashboard</h2>
+                        </div>
+                        <div class="dashboard-wrapper">
+                            <div class="dashboard-sections">
+                                <div class="row">
+                                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4">
+                                        <div class="dashboardbox">
+                                            <div class="icon"><i class="lni-write"></i></div>
+                                            <div class="contentbox">
+                                                <h2><a href="#">Total Rooms Posted</a></h2>
+                                                <h3>{{rooms.count}} Add Posted</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4">
+                                        <div class="dashboardbox">
+                                            <div class="icon"><i class="lni-add-files"></i></div>
+                                            <div class="contentbox">
+                                                <h2><a href="#">Featured StudyRoom</a></h2>
+                                                <h3>{{room.participants.count}} Add Posted</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4">
+                                        <div class="dashboardbox">
+                                            <div class="icon"><i class="lni-support"></i></div>
+                                            <div class="contentbox">
+                                                <h2><a href="#">Offers / Messages</a></h2>
+                                                <h3>{{room.room_message.count}} Messages</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <table class="table table-responsive dashboardtable tablemyads">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            NO
+                                        </th>
+                                        <th>Photo</th>
+                                        <th>Title</th>
+                                        <th>Topic</th>
+                                        <th>Participants</th>
+                                        <th>Created</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for room in rooms %}
+                                    <tr data-category="active">
+                                        <td>
+
+                                            {{ forloop.counter }}
+
+
+                                        </td>
+                                        <td class="photo"><img class="img-fluid" src="{{room.image.url}}" alt=""></td>
+                                        <td data-title="Title">
+                                            <h3>{{room.name}}</h3>
+                                        </td>
+                                        <td data-title="Category"><span class="adcategories">{{room.topic}}</span>
+                                        </td>
+                                        <td data-title="Ad Status"><span
+                                                class="adstatus adstatusactive">{{room.participants.count}}</span>
+                                        </td>
+                                        <td data-title="Price">
+                                            <h3>{{room.created | timesince}}</h3>
+                                        </td>
+                                        <td data-title="Action">
+
+                                            <div class="btns-actions">
+                                                <a class="btn-action btn-view" href="{% url 'room' room.id %}"><i
+                                                        class="lni-eye"></i></a>
+                                                {% if room.host == request.user %}
+                                                <a class="btn-action btn-edit" href="{% url 'update-room' room.id %}"><i
+                                                        class="lni-pencil"></i></a>
+                                                <a class="btn-action btn-delete"
+                                                    href="{% url 'delete-room' room.id %}"><i class="lni-trash"></i></a>
+                                                {% endif %}
+                                            </div>
+
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

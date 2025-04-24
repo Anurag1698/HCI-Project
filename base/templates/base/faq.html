@@ -1,0 +1,382 @@
+{% extends 'main.html' %} {% block content %} {% load static %}
+
+<style>
+  .panel-default .panel-heading {
+    background: #058899 !important;
+  }
+</style>
+
+<div class="page-header" style="background: url(assets/img/banner1.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="breadcrumb-wrapper">
+          <h2 class="product-title">FAQ</h2>
+          <ol class="breadcrumb">
+            <li><a href="#">Home /</a></li>
+            <li class="current">FAQ</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="faq section-padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="head-faq text-center">
+          <h2 class="section-title">Frequently Asked Questions</h2>
+        </div>
+
+        <div class="panel-group" id="accordion">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a
+                  data-toggle="collapse"
+                  data-parent="#accordion"
+                  href="#collapseOne"
+                >
+                  Types of Rooms?
+                </a>
+              </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse show">
+              <div class="panel-body">
+                <p>
+                  At EDUFY, we offer two primary types of study rooms: Public
+                  Rooms and Private Rooms. Public Rooms are open to all users
+                  and ideal for collaborative learning, community discussions,
+                  or open-topic study sessions. Anyone can request to join, and
+                  these rooms foster knowledge sharing across a wider audience.
+                  They’re perfect for students preparing for competitive exams,
+                  subject-specific groups, or even peer mentoring.
+                </p>
+                <br />
+                <p>
+                  Private Rooms, on the other hand, are invite-only or require
+                  approval to join. These are designed for focused group work,
+                  such as project teams, tutoring sessions, or study circles.
+                  Hosts have full control over participation, content, and room
+                  management. With features like file uploads, curriculum
+                  organization, and participant moderation, EDUFY rooms provide
+                  a dynamic, structured, and user-friendly environment for every
+                  learner’s need.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a
+                  data-toggle="collapse"
+                  data-parent="#accordion"
+                  href="#collapseTwo"
+                >
+                  How Auctions Work?
+                </a>
+              </h4>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse">
+              <div class="panel-body">
+                <p>
+                  At EDUFY, auctions provide a dynamic way for users to access
+                  premium resources, tutoring sessions, or exclusive study
+                  materials. When an auction is listed, users can place bids
+                  within a set timeframe. The highest bidder at the end of the
+                  auction wins the offering—whether it’s a one-on-one session
+                  with a tutor, a curriculum package, or unique academic
+                  content. All bids are visible in real-time, making the process
+                  transparent and engaging.
+                </p>
+                <br />
+                <p>
+                  To participate, users simply need to be registered and logged
+                  into their EDUFY account. Notifications are sent for key
+                  updates like being outbid or winning an auction. EDUFY ensures
+                  secure bidding and fair competition. Whether you're looking to
+                  enhance your learning or monetize your expertise, the auction
+                  system opens new possibilities for both learners and educators
+                  on the platform.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a
+                  data-toggle="collapse"
+                  data-parent="#accordion"
+                  href="#collapseThree"
+                >
+                  What is EDUFY and how does it help students?
+                </a>
+              </h4>
+            </div>
+            <div id="collapseThree" class="panel-collapse collapse">
+              <div class="panel-body">
+                <p>
+                  EDUFY is a collaborative online learning platform that allows
+                  students to create, join, and manage virtual study rooms.
+                  These rooms serve as focused spaces where learners can share
+                  knowledge, discuss topics, upload study materials, and engage
+                  in academic conversation. Whether you're studying for exams,
+                  working on group projects, or exploring a subject in-depth,
+                  EDUFY provides an interactive environment designed to boost
+                  productivity and enhance understanding.
+                </p>
+                <br />
+                <p>
+                  The platform empowers students to take charge of their
+                  learning by offering tools such as file sharing, discussion
+                  boards, and real-time messaging. Hosts can moderate
+                  discussions, manage participants, and ensure the quality of
+                  content being shared. By bringing together students with
+                  similar academic goals, EDUFY turns solitary studying into a
+                  supportive and efficient group experience.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a
+                  data-toggle="collapse"
+                  data-parent="#accordion"
+                  href="#collapseFour"
+                >
+                  How do I join a study room?
+                </a>
+              </h4>
+            </div>
+            <div id="collapseFour" class="panel-collapse collapse">
+              <div class="panel-body">
+                <p>
+                  Joining a room on EDUFY is simple and student-friendly. You
+                  can browse or search for rooms based on topic, subject, or
+                  creator. Once you find a room of interest, click the "Join"
+                  button. If the room is open, you’ll be added immediately. If
+                  it requires approval, a request will be sent to the host, who
+                  will then accept or reject your entry.
+                </p>
+                <br />
+                <p>
+                  After being approved, you’ll get a notification confirming
+                  your access. You can then view room content, download shared
+                  files, participate in discussions, and collaborate with other
+                  participants. This controlled access system ensures rooms
+                  remain focused and relevant while giving hosts full authority
+                  over their space.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a
+                  data-toggle="collapse"
+                  data-parent="#accordion"
+                  href="#collapseFive"
+                >
+                  Can I share files or study materials in a room?
+                </a>
+              </h4>
+            </div>
+            <div id="collapseFive" class="panel-collapse collapse">
+              <div class="panel-body">
+                <p>
+                  Yes, EDUFY encourages collaborative learning by enabling file
+                  sharing within each study room. Whether it's lecture notes,
+                  assignments, presentations, or PDFs, participants and hosts
+                  can upload materials directly to the room. These files are
+                  easily accessible to all room members, creating a shared
+                  knowledge base that enhances learning.
+                </p>
+                <br />
+                <p>
+                  This feature is especially helpful for group study sessions or
+                  when preparing for exams. Instead of juggling emails or
+                  external drives, all your academic resources live in one
+                  place, organized by room and topic. The file-sharing
+                  capability keeps the learning environment centralized and
+                  clutter-free.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a
+                  data-toggle="collapse"
+                  data-parent="#accordion"
+                  href="#collapseSix"
+                >
+                  What control do hosts have in their rooms?
+                </a>
+              </h4>
+            </div>
+            <div id="collapseSix" class="panel-collapse collapse">
+              <div class="panel-body">
+                <p>
+                  Room hosts on EDUFY have powerful tools to manage the learning
+                  environment. They can approve or reject join requests, remove
+                  participants, moderate discussions, and oversee file uploads.
+                  This control helps maintain a focused and respectful
+                  atmosphere, where participants can collaborate effectively.
+                </p>
+                <br />
+                <p>
+                  In addition, hosts receive notifications about new join
+                  requests or any significant changes in the room. They can also
+                  upload key study materials and guide discussions toward
+                  productive outcomes. EDUFY ensures that hosts have the
+                  necessary authority to curate their rooms while promoting
+                  collaboration and peer learning.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="testimonial section-padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div id="testimonials" class="owl-carousel">
+          <div class="item">
+            <div class="img-thumb">
+              <img
+                src="{% static 'assets/img/testimonial/img2.png' %}"
+                alt=""
+              />
+            </div>
+            <div class="testimonial-item">
+              <div class="content">
+                <p class="description">
+                  "EDUFY has completely changed how I prepare for exams. The
+                  study rooms feel like real classrooms where everyone
+                  contributes. I especially love how easy it is to upload and
+                  access notes. It's like having a digital library with
+                  classmates always available."
+                </p>
+                <div class="info-text">
+                  <h2><a href="#">Aisha M.</a></h2>
+                  <h4><a href="#">B.Sc. Computer Science Student</a></h4>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item">
+              <div class="img-thumb">
+                <img
+                  src="{% static 'assets/img/testimonial/img1.png' %}"
+                  alt=""
+                />
+              </div>
+              <div class="testimonial-item">
+                <div class="content">
+                  <p class="description">
+                    "The join request system makes the rooms more organized and
+                    focused. As a host, I can filter who enters and ensure
+                    meaningful discussions. A little more customization in room
+                    design would be nice, but overall, it's a solid platform!"
+                  </p>
+                  <div class="info-text">
+                    <h2><a href="#">Rohit K.</a></h2>
+                    <h4><a href="#">Engineering Student</a></h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item">
+              <div class="img-thumb">
+                <img
+                  src="{% static 'assets/img/testimonial/img3.png' %}"
+                  alt=""
+                />
+              </div>
+              <div class="testimonial-item">
+                <div class="content">
+                  <p class="description">
+                    "I used to study alone, but with EDUFY, I found a group of
+                    fellow NEET aspirants. We help each other stay accountable
+                    and revise regularly. It’s motivating and productive. Also,
+                    the notification system keeps us all in the loop!"
+                  </p>
+                  <div class="info-text">
+                    <h2><a href="#">Meena J.</a></h2>
+                    <h4><a href="#">NEET Aspirant</a></h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item">
+              <div class="img-thumb">
+                <img
+                  src="{% static 'assets/img/testimonial/img4.png' %}"
+                  alt=""
+                />
+              </div>
+              <div class="testimonial-item">
+                <div class="content">
+                  <p class="description">
+                    "EDUFY is user-friendly and very practical for remote
+                    learning. I appreciate the clean design and how it
+                    encourages peer interaction. Occasionally, the file uploads
+                    take time, but the team seems to be improving that."
+                  </p>
+                  <div class="info-text">
+                    <h2><a href="#">Daniel R.</a></h2>
+                    <h4><a href="#">International Student (Germany)</a></h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item">
+              <div class="img-thumb">
+                <img
+                  src="{% static 'assets/img/testimonial/img5.png' %}"
+                  alt=""
+                />
+              </div>
+              <div class="testimonial-item">
+                <div class="content">
+                  <p class="description">
+                    "This app is a game-changer for students. I joined a study
+                    group for Math and it made a huge difference. Everyone
+                    shares notes, and the curriculum section helps track what
+                    we’ve covered. Highly recommend to every student!"
+                  </p>
+                  <div class="info-text">
+                    <h2><a href="#">Sneha V.</a></h2>
+                    <h4><a href="#">High School Student</a></h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

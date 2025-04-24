@@ -1,0 +1,538 @@
+{% extends 'main.html' %} {% block content %} {% load static %}
+<style>
+  #hero-area .overlay {
+    content: "";
+    position: absolute !important;
+    background: #07294d !important;
+  }
+
+  .yrs {
+    color: #ffc600 !important;
+  }
+
+  div .owl-prev {
+    background: #07294d !important;
+  }
+
+  div .owl-prev {
+    background: #07294d !important;
+  }
+
+  div .owl-prev:hover {
+    background: #044181 !important;
+    color: #ffc600 !important;
+  }
+
+  div .owl-next {
+    background: #07294d !important;
+  }
+
+  div .owl-next:hover {
+    background: #044181 !important;
+    color: #ffc600 !important;
+  }
+
+  .lni-chevron-right {
+    color: #ffc600 !important;
+  }
+
+  .lni-chevron-left {
+    color: #ffc600 !important;
+  }
+
+  i .lni-users {
+    background-color: #07294d !important;
+    color: #ffc600 !important;
+  }
+  /* h3, a {
+    color: #07294d !important;
+  } */
+  .services-item {
+    background-color: #07294d !important;
+    color: aliceblue !important;
+  }
+  .key-feature-title {
+    color: #ffc600 !important;
+  }
+</style>
+
+<div id="hero-area">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-12 col-lg-9 col-xs-12 text-center">
+        <div class="contents">
+          <h1 class="head-title">
+            Welcome to The Largest
+            <span class="yrs">Online Study Community</span>
+          </h1>
+          <p>EDUFY STUDY ROOM | Find study partners around the world!</p>
+          <div class="search-bar">
+            <div class="search-inner">
+              <form class="search-form" method="GET" action=" {% url 'home' %}">
+                <div class="form-control">
+                  <input
+                    type="text"
+                    name="q"
+                    class="form-control"
+                    placeholder="What are you looking for?"
+                  />
+                </div>
+                <button class="btn submit btn-common" type="submit">
+                  <i class="lni-search"></i> Search Now
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="categories">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10 col-md-12 col-xs-12">
+        <div
+          id="categories-icon-slider"
+          class="categories-wrapper owl-carousel owl-theme"
+        >
+          {% for topic in topics %}
+          <div class="item">
+            <a href="#">
+              <div class="category-icon-item">
+                <div class="icon-box">
+                  <div class="icon">
+                    {% if topic.image %}
+                    <img
+                      src="{{ topic.image.url }}"
+                      width="40"
+                      height="50"
+                      alt="{{ topic.name }}"
+                    />
+                    {% else %}
+                    <img
+                      src="media\image\default_course.jpeg"
+                      width="40"
+                      height="50"
+                      alt="Default image"
+                    />
+                    {% endif %}
+                  </div>
+                  <h4>{{ topic.name }}</h4>
+                </div>
+              </div>
+            </a>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="featured-lis section-padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 wow fadeIn" data-wow-delay="0.5s">
+        <h3 class="section-title">Featured Study Room</h3>
+        <div id="new-products" class="owl-carousel owl-theme">
+          {% for room in rooms %}
+          <div class="item">
+            <div class="product-item">
+              <div class="carousel-thumb">
+                <img
+                  src="{{room.image.url}}"
+                  width="100%"
+                  height="200"
+                  alt=""
+                />
+              </div>
+              <div class="product-content">
+                <span>{{room.topic}}</span>
+                <h3 class="product-title">
+                  <a href="{% url 'room' room.id %}">{{room.name}}</a>
+                </h3>
+                <div class="meta-tag">
+                  <span>
+                    <a href="#"><i class="lni-user"></i> {{room.host}}</a>
+                  </span>
+                  <span>
+                    <a href="#"
+                      ><i class="lni-map-marker"></i> {{room.created}}</a
+                    >
+                  </span>
+                </div>
+                <p class="dsc">{{room.description | truncatechars:100}}</p>
+                <div class="">
+                  <div>
+                    <a class="btn btn-common" href="{% url 'room' room.id %}"
+                      >View Details</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="works section-padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h3 class="section-title">How It Works?</h3>
+      </div>
+      <div class="col-lg-4 col-md-4 col-xs-12">
+        <div class="works-item">
+          <div class="icon-box">
+            <i class="lni-users"></i>
+          </div>
+          <p>Create an Account</p>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-xs-12">
+        <div class="works-item">
+          <div class="icon-box">
+            <i class="lni-bookmark-alt"></i>
+          </div>
+          <p>Post Free Ad</p>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-xs-12">
+        <div class="works-item">
+          <div class="icon-box">
+            <i class="lni-thumbs-up"></i>
+          </div>
+          <p>Deal Done</p>
+        </div>
+      </div>
+      <hr class="works-line" />
+    </div>
+  </div>
+</section>
+
+<section class="services bg-light section-padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h3 class="section-title">Key Features</h3>
+      </div>
+
+      <div class="col-md-6 col-lg-4 col-xs-12">
+        <div class="services-item wow fadeInRight" data-wow-delay="0.2s">
+          <div class="icon">
+            <i class="lni-leaf"></i>
+          </div>
+          <div class="services-content">
+            <h3><a class="key-feature-title" href="#">Duration</a></h3>
+            <p>
+              Flexible study options allow you to choose between full-time and
+              part-time learning, with multiple enrollment dates throughout the
+              year to fit your schedule.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 col-xs-12">
+        <div class="services-item wow fadeInRight" data-wow-delay="0.4s">
+          <div class="icon">
+            <i class="lni-display"></i>
+          </div>
+          <div class="services-content">
+            <h3>
+              <a class="key-feature-title" href="#"
+                >Dual Degree Opportunities</a
+              >
+            </h3>
+            <p>
+              Boost your academic journey with the option to earn a dual degree
+              through EDUFY's partner universities. 100% online, no additional
+              cost. Contact us to explore your eligibility.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 col-xs-12">
+        <div class="services-item wow fadeInRight" data-wow-delay="0.6s">
+          <div class="icon">
+            <i class="lni-color-pallet"></i>
+          </div>
+          <div class="services-content">
+            <h3>
+              <a class="key-feature-title" href="#"
+                >Scholarships & Financial Aid</a
+              >
+            </h3>
+            <p>
+              EDUFY provides access to scholarships for both local and
+              international students. Eligible students may also apply for
+              government-funded student loans and need-based bursaries.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 col-xs-12">
+        <div class="services-item wow fadeInRight" data-wow-delay="0.8s">
+          <div class="icon">
+            <i class="lni-emoji-smile"></i>
+          </div>
+          <div class="services-content">
+            <h3>
+              <a class="key-feature-title" href="#">UX-Friendly Interface</a>
+            </h3>
+            <p>
+              Enjoy a smooth, distraction-free experience on EDUFY with a modern
+              and intuitive platform designed for learners and educators alike.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 col-xs-12">
+        <div class="services-item wow fadeInRight" data-wow-delay="1s">
+          <div class="icon">
+            <i class="lni-pencil-alt"></i>
+          </div>
+          <div class="services-content">
+            <h3>
+              <a class="key-feature-title" href="#">Easily Customizable</a>
+            </h3>
+            <p>
+              From room settings to study materials, EDUFY lets you personalize
+              your learning space to match your goals and teaching preferences.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4 col-xs-12">
+        <div class="services-item wow fadeInRight" data-wow-delay="1.2s">
+          <div class="icon">
+            <i class="lni-headphone-alt"></i>
+          </div>
+          <div class="services-content">
+            <h3>
+              <a class="key-feature-title" href="#">Security & Support</a>
+            </h3>
+            <p>
+              Your privacy and data are protected with industry-standard
+              security. Plus, our dedicated support team is always available to
+              assist you with any technical needs.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonial section-padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div id="testimonials" class="owl-carousel">
+          <div class="item">
+            <div class="img-thumb">
+              <img
+                src="{% static 'assets/img/testimonial/img1.png' %}"
+                alt=""
+              />
+            </div>
+            <div class="testimonial-item">
+              <div class="content">
+                <p class="description">
+                  "The join request system makes the rooms more organized and
+                  focused. As a host, I can filter who enters and ensure
+                  meaningful discussions. A little more customization in room
+                  design would be nice, but overall, it's a solid platform!"
+                </p>
+                <div class="info-text">
+                  <h2><a href="#">Rohit K.</a></h2>
+                  <h4><a href="#">Engineering Student</a></h4>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item">
+              <div class="img-thumb">
+                <img
+                  src="{% static 'assets/img/testimonial/img2.png' %}"
+                  alt=""
+                />
+              </div>
+              <div class="testimonial-item">
+                <div class="content">
+                  <p class="description">
+                    "EDUFY has completely changed how I prepare for exams. The
+                    study rooms feel like real classrooms where everyone
+                    contributes. I especially love how easy it is to upload and
+                    access notes. It's like having a digital library with
+                    classmates always available."
+                  </p>
+                  <div class="info-text">
+                    <h2><a href="#">Aisha M.</a></h2>
+                    <h4><a href="#">B.Sc. Computer Science Student</a></h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item">
+              <div class="img-thumb">
+                <img
+                  src="{% static 'assets/img/testimonial/img3.png' %}"
+                  alt=""
+                />
+              </div>
+              <div class="testimonial-item">
+                <div class="content">
+                  <p class="description">
+                    "I used to study alone, but with EDUFY, I found a group of
+                    fellow NEET aspirants. We help each other stay accountable
+                    and revise regularly. It’s motivating and productive. Also,
+                    the notification system keeps us all in the loop!"
+                  </p>
+                  <div class="info-text">
+                    <h2><a href="#">Meena J.</a></h2>
+                    <h4><a href="#">NEET Aspirant</a></h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item">
+              <div class="img-thumb">
+                <img
+                  src="{% static 'assets/img/testimonial/img4.png' %}"
+                  alt=""
+                />
+              </div>
+              <div class="testimonial-item">
+                <div class="content">
+                  <p class="description">
+                    "EDUFY is user-friendly and very practical for remote
+                    learning. I appreciate the clean design and how it
+                    encourages peer interaction. Occasionally, the file uploads
+                    take time, but the team seems to be improving that."
+                  </p>
+                  <div class="info-text">
+                    <h2><a href="#">Daniel R.</a></h2>
+                    <h4><a href="#">International Student (Germany)</a></h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item">
+              <div class="img-thumb">
+                <img
+                  src="{% static 'assets/img/testimonial/img5.png' %}"
+                  alt=""
+                />
+              </div>
+              <div class="testimonial-item">
+                <div class="content">
+                  <p class="description">
+                    "This app is a game-changer for students. I joined a study
+                    group for Math and it made a huge difference. Everyone
+                    shares notes, and the curriculum section helps track what
+                    we’ve covered. Highly recommend to every student!"
+                  </p>
+                  <div class="info-text">
+                    <h2><a href="#">Sneha V.</a></h2>
+                    <h4><a href="#">High School Student</a></h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="blog" class="section-padding">
+  <div class="container">
+    <h2 class="section-title">Blog Post</h2>
+    <div class="row">
+      {% for blog in blogs %}
+      <div class="col-lg-4 col-md-6 col-xs-12 blog-item">
+        <div class="blog-item-wrapper">
+          <div class="blog-item-img">
+            <a href="{% url 'blog' blog.id %}">
+              <img src="{{blog.image.url}}" alt="" />
+            </a>
+          </div>
+          <div class="blog-item-text">
+            <div class="meta-tags">
+              <span class="user float-left"
+                ><a href="{% url 'user-profile' blog.host.id %}"
+                  ><i class="lni-user"></i> {{blog.host}}</a
+                ></span
+              >
+              <span class="date float-right"
+                ><i class="lni-calendar"></i>{{blog.created | timesince}}</span
+              >
+            </div>
+            <h3>
+              <a href="{% url 'blog' blog.id %}">{{blog.name}}</a>
+            </h3>
+            <p>{{blog.body | truncatechars:100}}</p>
+            <a href="{% url 'blog' blog.id %}" class="btn btn-common"
+              >Read More</a
+            >
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="subscribes section-padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="subscribes-inner">
+          <div class="icon">
+            <i class="lni-pointer"></i>
+          </div>
+          <div class="sub-text">
+            <h3>Subscribe to Newsletter</h3>
+            <p>and receive new ads in inbox</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <form>
+          <div class="subscribe">
+            <input
+              class="form-control"
+              name="EMAIL"
+              placeholder="Enter your Email"
+              required=""
+              type="email"
+            />
+            <button class="btn btn-common" type="submit">Subscribe</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

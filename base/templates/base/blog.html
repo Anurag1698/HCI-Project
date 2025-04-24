@@ -1,0 +1,192 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+{% load static %}
+
+<div class="page-header" style="background: url(assets/img/banner1.jpg)">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumb-wrapper">
+                    <h2 class="product-title">Blog Details</h2>
+                    <ol class="breadcrumb">
+                        <li><a href="{% url 'home' %}">Home /</a></li>
+                        <li class="current">Blog Details</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="content" class="section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12 col-xs-12">
+
+                <div class="blog-post single-post">
+
+                    <div class="post-thumb">
+                        <a href="#"><img class="img-fluid" src="{{blog.image.url}}" alt=""></a>
+                        <div class="hover-wrap">
+                        </div>
+                    </div>
+
+
+                    <div class="post-content">
+                        <h2 class="post-title"><a href="#l">{{blog.name}}</a></h2>
+                        <div class="meta">
+                            <span class="meta-part"><a href="#"><i class="lni-user"></i>{{blog.host}}</a></span>
+                            <span class="meta-part"><a href="#"><i class="lni-alarm-clock"></i>{{blog.created | timesince}}</a></span>
+                            <span class="meta-part"><a href="#"><i class="lni-folder"></i>{{blog.topic}}</a></span>
+                            <span class="meta-part"><a href="#"><i class="lni-comments-alt"></i>{{blog.}} Comments</a></span>
+                        </div>
+                        <div class="entry-summary">
+                            <p>{{blog.body}}</p>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div id="comments">
+                    <div class="comment-box">
+                        <h3>Comments</h3>
+                        <ol class="comments-list">
+                            <li>
+                                <div class="media">
+                                    <div class="thumb-left">
+                                        <a href="#">
+                                            <img class="img-fluid" src="{%static 'assets/img/blog/user1.jpg' %}" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="info-body">
+                                        <div class="media-heading">
+                                            <h4 class="name">Larsen Mortin</h4>
+                                            <span class="comment-date"><i class="lni-alarm-clock"></i> June 21,
+                                                2018</span>
+                                            <a href="#" class="reply-link"><i class="lni-reply"></i> Reply</a>
+                                        </div>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis, nemo
+                                            ipsam eum illo minus voluptatibus ipsa nulla, perferendis aliquid
+                                            aperiam beatae nihil sapiente eaque atque nesciunt perspiciatis ex
+                                            saepe, quibusdam..</p>
+                                    </div>
+                                </div>
+                                <ul>
+                                    <li>
+                                        <div class="media">
+                                            <div class="thumb-left">
+                                                <a href="#">
+                                                    <img class="img-fluid" src="{%static 'assets/img/blog/user2.jpg' %}" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="info-body">
+                                                <div class="media-heading">
+                                                    <h4 class="name">Albert Johnes</h4>
+                                                    <span class="comment-date"><i class="lni-alarm-clock"></i> June
+                                                        21, 2018</span>
+                                                    <a href="#" class="reply-link"><i class="lni-reply"></i>
+                                                        Reply</a>
+                                                </div>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                                    Officiis, nemo ipsam eum illo minus voluptatibus ipsa nulla,
+                                                    perferendis aliquid aperiam beatae nihil sapiente eaque atque
+                                                    nesciunt perspiciatis ex saepe, quibusdam..</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <div class="media">
+                                    <div class="thumb-left">
+                                        <a href="#">
+                                            <img class="img-fluid" src="{%static 'assets/img/blog/user3.jpg' %}" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="info-body">
+                                        <div class="media-heading">
+                                            <h4 class="name">Steven Hawkins</h4>
+                                            <span class="comment-date"><i class="lni-alarm-clock"></i> June 21,
+                                                2018</span>
+                                            <a href="#" class="reply-link"><i class="lni-reply"></i> Reply</a>
+                                        </div>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis, nemo
+                                            ipsam eum illo minus voluptatibus ipsa nulla, perferendis aliquid
+                                            aperiam beatae nihil sapiente eaque atque nesciunt perspiciatis ex
+                                            saepe, quibusdam..</p>
+                                    </div>
+                                </div>
+                            </li>
+                        </ol>
+
+                        <div id="respond">
+                            <h2 class="respond-title">Leave A Comment</h2>
+                            <form action="#">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-xs-12">
+                                        <div class="form-group">
+                                            <input id="author" class="form-control" name="author" type="text"
+                                                value="" size="30" placeholder="Your Name">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-xs-12">
+                                        <div class="form-group">
+                                            <input id="email" class="form-control" name="author" type="text"
+                                                value="" size="30" placeholder="Your E-Mail">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12col-xs-12">
+                                        <div class="form-group">
+                                            <textarea id="comment" class="form-control" name="comment" cols="45"
+                                                rows="8" placeholder="Massage..."></textarea>
+                                        </div>
+                                        <button type="submit" id="submit" class="btn btn-common">Post
+                                            Comment</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <aside id="sidebar" class="col-lg-4 col-md-12 col-xs-12 right-sidebar">             
+
+                <div class="widget widget-popular-posts">
+                    <h4 class="widget-title">Recent Posts</h4>
+                    <ul class="posts-list">
+                        {% for blog in blogs.all|slice:5 %}
+                        <li>
+                            <div class="widget-thumb">
+                                <a href="{% url 'blog' blog.id %}"><img src="{{blog.image.url}}" alt="" /></a>
+                            </div>
+                            <div class="widget-content">
+                                <a class="text-dark" href="{% url 'blog' blog.id %}">{{blog.name}}</a>
+                                <span><i class="icon-calendar"></i>{{blog.created | timesince}}</span>
+                            </div>
+                            <div class="clearfix"></div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="widget">
+                    <h4 class="widget-title">Advertisement</h4>
+                    <div class="add-box">
+                        <img src="{%static 'assets/img/img1.jpg' %}" alt="">
+                    </div>
+                </div>
+            </aside>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
